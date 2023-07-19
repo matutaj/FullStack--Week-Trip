@@ -15,8 +15,9 @@ const Trips = async () => {
     //usando o fetch do next
     const data = await fetch("http://jsonplaceholder.typicode.com/posts", {
         next: {
-            //para não pegar as informações do catch mas do banco sempre que for chamado 
-            revalidate: 0
+            //caso queira pegar do catch basta adicionar um valor
+            //para não pegar as informações do catch mas do banco sempre que for chamado usamos o valor falso ou 0
+            revalidate: 10
         }
     }).then((res) => res.json());
 
