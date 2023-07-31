@@ -7,7 +7,7 @@ export const metadata = {
 const Page = () => {
     return (
         <>
-            <div>Matuta Jorge Jr.</div>
+            <div className="bg-primary">Matuta Jorge Jr.</div>
             <Trips />
 
         </>
