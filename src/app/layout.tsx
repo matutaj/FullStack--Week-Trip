@@ -2,7 +2,7 @@ import './globals.css'
 import { NextAuthProvider } from '@/providers/auth'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
-import Header from './components/Header'
+import Header from '../../src/components/Header'
 
 const poppins = Poppins({
   subsets: ['latin'], weight: [

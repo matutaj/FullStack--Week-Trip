@@ -19,7 +19,7 @@ const Header = (): any => {
     return (
         <div className="container mx-auto p-5 flex justify-between">
             <div className="relative h-[32px] w-[182px]">
-                <Image width={183} height={32} src="/Logo.png" alt="FullStack Week " fill />
+                <Image width={183} height={32} src="/Logo.png" alt="FullStack Week " />
 
 
             </div>
