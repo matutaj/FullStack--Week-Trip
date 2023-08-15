@@ -23,6 +23,8 @@ model Trip {
   imagesUrl   String[]
   maxGuests   Int
   highlights  String[]
+  countryCode String
+  recommended Boolean           @default(false)
   reservation TripReservation[]
 }
 
