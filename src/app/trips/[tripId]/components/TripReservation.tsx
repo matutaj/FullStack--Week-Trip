@@ -13,7 +13,7 @@ interface TripReservationProps {
 const TripReservation = ({ trip }: TripReservationProps) => {
     return (
         <div>
-            <div className="flex flex-col px-5">
+            <div className="flex flex-col px-5 ">
                 <div className="flex gap-3">
                     <DatePicker placeholderText="Data de Início" onChange={() => { }} className="w-full" />
                     <DatePicker placeholderText="Data final" onChange={() => { }} className="w-full" />
@@ -24,7 +24,10 @@ const TripReservation = ({ trip }: TripReservationProps) => {
                     <p className="font-medium texte-sm text-primaryDarker">R$2500</p>
 
                 </div>
-                <Button className="w-full mt-2">Reservar Agora</Button>
+                <div className="pb-10 border-b border-grayLighter w-full    ">
+                    <Button className="w-full mt-2">Reservar Agora</Button>
+
+                </div>
             </div>
         </div>
     )
