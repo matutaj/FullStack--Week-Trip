@@ -16,6 +16,7 @@ const getTripDetails = async (tripId: string) => {
 
 const TripDetails = async ({ params }: { params: { tripId: string } }) => {
     const trip = await getTripDetails(params.tripId);
+    // const trip = await fetch("http://localhost:3000/hello")
 
     if (!trip) return null;
 
