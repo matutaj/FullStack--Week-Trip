@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import Image from "next/image";
 import React from "react";
 
@@ -16,6 +17,7 @@ const TripLocation = ({ location, locationDescription }: TripLocationProps) => {
             </div>
             <h3 className=" text-primaryDarker text-sm font-semibold mt-3 ">{location}</h3>
             <p className="text-xs text-primaryDarker mt-2 leading-5">{locationDescription}</p>
+            <Button variant="outlined" className="w-full mt-5"> Ver no google Maps</Button>
         </div>
     )
 }
