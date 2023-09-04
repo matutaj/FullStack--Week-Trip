@@ -8,7 +8,9 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
 interface TripReservationProps {
-    trip: Trip
+    tripoStartDate: Date
+    tripEndDate: Date
+    maxGuests: number
 }
 
 interface TripReservationForm {
@@ -17,12 +19,14 @@ interface TripReservationForm {
     endDate: Date | null
 }
 
-const TripReservation = ({ trip }: TripReservationProps) => {
-    const { register, handleSubmit, formState: { errors }, control } = useForm<TripReservationForm>();
+const TripReservation = ({ maxGuests, tripoStartDate, tripEndDate }: TripReservationProps) => {
+    const { register, handleSubmit, formState: { errors }, control, watch } = useForm<TripReservationForm>();
 
     const onSubmit = (data: any) => {
         console.log({ data })
     }
+
+    const startDate = watch("startDate")
     return (
         <div>
             <div className="flex flex-col px-5 ">
@@ -62,7 +66,11 @@ const TripReservation = ({ trip }: TripReservationProps) => {
                             onChange={field.onChange}
                             selected={field.value}
                             placeholderText="Data Final"
-                            className="w-full" />
+                            className="w-full"
+                            maxDate={tripEndDate}
+                            minDate={startDate ?? tripoStartDate}
+                        />
+
                         )}
                     />
                 </div>
@@ -73,8 +81,8 @@ const TripReservation = ({ trip }: TripReservationProps) => {
                     }
                 })}
                     error={!!errors?.guests}
-                    errorMessage={errors?.startDate?.message}
-                    placeholder={`Número de hóspedes max(${trip.maxGuests})`} className="mt-4" />
+                    errorMessage={errors?.guests?.message}
+                    placeholder={`Número de hóspedes max(${maxGuests})`} className="mt-4" />
                 <div className="flex justify-between mt-3">
                     <p className="font-medium texte-sm text-primaryDarker">Total:</p>
                     <p className="font-medium texte-sm text-primaryDarker">R$2500</p>
