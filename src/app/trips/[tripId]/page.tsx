@@ -16,13 +16,14 @@ const getTripDetails = async (tripId: string) => {
 
 const TripDetails = async ({ params }: { params: { tripId: string } }) => {
     const trip = await getTripDetails(params.tripId);
+    // const trip = await fetch("http://localhost:3000/hello")
 
     if (!trip) return null;
 
     return (
         <div className="container mx-auto">
             <TripHeader trip={trip} />
-            <TripReservation trip={trip} />
+            <TripReservation tripoStartDate={trip.startDate} tripEndDate={trip.endDate} maxGuests={trip.maxGuests} />
             <TripDescrition description={trip.description} />
             <TripHighlights highlights={trip.highlights} />
             <TripLocation location={trip.location} locationDescription={trip.locationDescription} />
