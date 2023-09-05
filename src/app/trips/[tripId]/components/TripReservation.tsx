@@ -22,7 +22,7 @@ interface TripReservationForm {
 }
 
 const TripReservation = ({ maxGuests, tripStartDate, tripEndDate, pricePerDay, tripId }: TripReservationProps) => {
-    const { register, handleSubmit, formState: { errors }, control, watch } = useForm<TripReservationForm>();
+    const { register, handleSubmit, formState: { errors }, control, watch, setError } = useForm<TripReservationForm>();
 
     const onSubmit = async (data: any) => {
         const response = await fetch("http://localhost:3000/api/trips/check", {
@@ -35,6 +35,31 @@ const TripReservation = ({ maxGuests, tripStartDate, tripEndDate, pricePerDay, t
                 })
             )
         })
+        const res = response.json();
+
+        if (res?.error?.code === "TRIP_ALREADY_RESERVED") {
+            setError("startDate", {
+                type: "manual",
+                message: "Esta data Já está reservada. "
+            });
+            setError("endDate", {
+                type: "manual",
+                message: "Esta data Já está reservada. "
+            })
+        };
+        if (res?.error?.code === "TRIP_ALREADY_RESERVED") {
+            setError("startDate", {
+                type: "manual",
+                message: "Data inválida. "
+            });
+            setError("endDate", {
+                type: "manual",
+                message: "Data inválida. "
+            });
+        };
+
+
+
     }
 
     const startDate = watch("startDate")
