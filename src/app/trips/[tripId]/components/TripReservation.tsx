@@ -3,13 +3,14 @@
 import Button from "@/components/Button";
 import DatePicker from "@/components/DatePicker";
 import Input from "@/components/Input";
-import { Trip } from "@prisma/client";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import { differenceInDays } from "date-fns"
 
 interface TripReservationProps {
     tripStartDate: Date
     tripEndDate: Date
+    pricePerDay: number
     maxGuests: number
 }
 
@@ -19,7 +20,7 @@ interface TripReservationForm {
     endDate: Date | null
 }
 
-const TripReservation = ({ maxGuests, tripStartDate, tripEndDate }: TripReservationProps) => {
+const TripReservation = ({ maxGuests, tripStartDate, tripEndDate, pricePerDay }: TripReservationProps) => {
     const { register, handleSubmit, formState: { errors }, control, watch } = useForm<TripReservationForm>();
 
     const onSubmit = (data: any) => {
@@ -27,6 +28,7 @@ const TripReservation = ({ maxGuests, tripStartDate, tripEndDate }: TripReservat
     }
 
     const startDate = watch("startDate")
+    const endDate = watch("endDate")
     return (
         <div>
             <div className="flex flex-col px-5 ">
@@ -47,8 +49,9 @@ const TripReservation = ({ maxGuests, tripStartDate, tripEndDate }: TripReservat
                             onChange={field.onChange}
                             selected={field.value}
                             placeholderText="Data de Início"
+                            className="w-full"
                             minDate={tripStartDate}
-                            className="w-full" />
+                        />
                         )}
                     />
                     <Controller
@@ -68,7 +71,6 @@ const TripReservation = ({ maxGuests, tripStartDate, tripEndDate }: TripReservat
                             selected={field.value}
                             placeholderText="Data Final"
                             className="w-full"
-                            maxDate={tripEndDate}
                             minDate={startDate ?? tripStartDate}
                         />
 
@@ -86,8 +88,9 @@ const TripReservation = ({ maxGuests, tripStartDate, tripEndDate }: TripReservat
                     placeholder={`Número de hóspedes max(${maxGuests})`} className="mt-4" />
                 <div className="flex justify-between mt-3">
                     <p className="font-medium texte-sm text-primaryDarker">Total:</p>
-                    <p className="font-medium texte-sm text-primaryDarker">R$2500</p>
-
+                    <p className="font-medium texte-sm text-primaryDarker">{startDate && endDate ?
+                        `R$${differenceInDays(endDate, startDate) * pricePerDay}`
+                        : "R$0"}</p>
                 </div>
                 <div className="pb-10 border-b border-grayLighter w-full    ">
                     <Button onClick={() => handleSubmit(onSubmit)()} className="w-full mt-2">Reservar Agora</Button>
