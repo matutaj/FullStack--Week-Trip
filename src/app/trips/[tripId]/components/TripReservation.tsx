@@ -8,7 +8,7 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
 interface TripReservationProps {
-    tripoStartDate: Date
+    tripStartDate: Date
     tripEndDate: Date
     maxGuests: number
 }
@@ -19,7 +19,7 @@ interface TripReservationForm {
     endDate: Date | null
 }
 
-const TripReservation = ({ maxGuests, tripoStartDate, tripEndDate }: TripReservationProps) => {
+const TripReservation = ({ maxGuests, tripStartDate, tripEndDate }: TripReservationProps) => {
     const { register, handleSubmit, formState: { errors }, control, watch } = useForm<TripReservationForm>();
 
     const onSubmit = (data: any) => {
@@ -47,6 +47,7 @@ const TripReservation = ({ maxGuests, tripoStartDate, tripEndDate }: TripReserva
                             onChange={field.onChange}
                             selected={field.value}
                             placeholderText="Data de Início"
+                            minDate={tripStartDate}
                             className="w-full" />
                         )}
                     />
@@ -68,7 +69,7 @@ const TripReservation = ({ maxGuests, tripoStartDate, tripEndDate }: TripReserva
                             placeholderText="Data Final"
                             className="w-full"
                             maxDate={tripEndDate}
-                            minDate={startDate ?? tripoStartDate}
+                            minDate={startDate ?? tripStartDate}
                         />
 
                         )}
