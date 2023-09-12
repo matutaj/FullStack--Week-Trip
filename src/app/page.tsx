@@ -1,4 +1,4 @@
-'use client'
+
 
 import QuickSearch from "./components/QuickSearch"
 import RecommendedTrip from "./components/RecommendeTrip"

@@ -4,9 +4,15 @@ import { prisma } from "@/lib/prisma";
 import { Trip } from "@prisma/client";
 import React from "react";
 
+async function getTrip() {
+    const trips = await prisma.trip.findMany({})
+
+    return trips;
+}
+
 
 const RecommendedTrip = async () => {
-    const data = await fetch("http://localhost:3000/hello").then((res) => res.json());
+    const data = await getTrip()
     return (
         <div className="contariner mx-auto p-5">
             <div className="flex items-center mt-4">
