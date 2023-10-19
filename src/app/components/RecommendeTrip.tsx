@@ -1,15 +1,14 @@
 
+
 import TripItem from "@/components/TripItem";
 import { prisma } from "@/lib/prisma";
 import { Trip } from "@prisma/client";
 import React from "react";
 
 async function getTrip() {
-    const trips = await prisma.trip.findMany({})
-
+    const trips = await prisma?.trip.findMany()
     return trips;
 }
-
 
 const RecommendedTrip = async () => {
     const data = await getTrip()
@@ -22,7 +21,7 @@ const RecommendedTrip = async () => {
             </div>
             <div className="flex flex-col items-center mt-5 gap-5">
                 {
-                    data.map((trip: Trip) => (
+                    data && data.map((trip: Trip) => (
                         <TripItem key={trip.id} trip={trip} />
                     ))
                 }
