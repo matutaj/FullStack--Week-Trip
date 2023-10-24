@@ -1,4 +1,3 @@
-"use client";
 
 import TripItem from "@/components/TripItem";
 import { Trip } from "@prisma/client";
