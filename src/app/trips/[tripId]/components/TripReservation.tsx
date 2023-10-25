@@ -36,9 +36,9 @@ const TripReservation = ({ maxGuests, tripStartDate, tripEndDate, pricePerDay, t
                 })
             )
         })
-        const res = response.json();
+        const res: any = response.json();
 
-        if (res?.error?.code === "TRIP_ALREADY_RESERVED") {
+        if (res?.error.code === "TRIP_ALREADY_RESERVED") {
             setError("startDate", {
                 type: "manual",
                 message: "Esta data Já está reservada. "
